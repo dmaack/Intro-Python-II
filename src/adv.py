@@ -40,10 +40,25 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 
-player = Player('Dominique', room['outside']) ## add an input field??
-print(player)
+player = input('\nHi! Welcome to the game. To get started please enter your name: ') ## add an input field??
+#print(new_player)
 # Write a loop that:
-#
+#player_input = ''
+
+while True:
+    print('\nHello', player, '! You are currently in the:', room['outside'])
+    direction = input('  To move into another room, tell me your next move. Your options are [n] North [s] South [e] East [w] West or [q] Quit: ')
+    for i in direction:
+        if i == ['n', 's', 'e', 'w', 'q']:
+            print('Please enter a valid direction: n, s, e, w, or q')
+            continue
+
+    if direction == 'q':
+        break
+    elif direction == 'n':
+        print('north is working')
+    break
+    
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
