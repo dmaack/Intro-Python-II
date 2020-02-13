@@ -49,12 +49,15 @@ player = Player(player_name, room['outside'])
 
 while True:
 
-
-    print('\n', player.name, '!')
-    print(' You are in:', player.current_room.name)
-    #print('\nHello', player.name, '! You are currently in the:', player.current_room)
     
-    direction = input(f'\nTo move into a room, tell me your next move. Your options are [n] North [s] South [e] East [w] West or [q] Quit: ')
+
+    #print('\n', player.name, '!')
+    print('\n You are in:', player.current_room.name)
+    print(' Description: ', player.current_room.description)
+    #print('\nHello', player.name, '! You are currently in the:', player.current_room)
+    if player.current_room.name == 'Treasure Chamber':
+        print('\nYOU WIN!', player.name)
+    direction = input(f'\n To move into a room, tell me your next move. \n Your options are [n] North [s] South [e] East [w] West or [q] Quit: ')
     # for i in direction:
     #     if i not in ['n', 's', 'e', 'w', 'q']:
     #         print('Please enter a valid direction: n, s, e, w, or q')
@@ -62,16 +65,40 @@ while True:
     #     else:
     #         print('You have now moved to: ', player.current_room.name)
 
-    if direction == 'q':
-        break
-    elif direction == 'n':
-        player.current_room = player.current_room.n_to
-    elif direction == 's':
-        player.current_room = player.current_room.s_to
-    elif direction == 'e':
-        player.current_room = player.current_room.e_to
-    elif direction == 'w':
-        player.current_room = player.current_room.w_to
+    if direction != None:
+        if direction == 'q':
+            print('\nThanks for playing!\n')
+            break
+        elif direction == 'n':
+            if player.current_room.n_to != None:
+                player.current_room = player.current_room.n_to
+                continue
+            else:
+                print('\n Sorry, cant go that way. Try Again')
+                continue
+        elif direction == 's':
+            if player.current_room.s_to != None:
+                player.current_room = player.current_room.s_to
+                continue
+            else:
+                print('\n Sorry, cant go that way. Try Again')
+                continue
+        # player.current_room = player.current_room.s_to
+        elif direction == 'e':
+            if player.current_room.e_to != None:
+                player.current_room = player.current_room.e_to
+                continue
+            else:
+                print('\n Sorry, cant go that way. Try Again')
+                continue
+        elif direction == 'w':
+            if player.current_room.w_to != None:
+                player.current_room = player.current_room.w_to
+                continue
+            else:
+                print('\n Sorry, cant go that way. Try Again')
+                continue
+    
     else:
         print('Invalid input')
 
