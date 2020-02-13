@@ -12,5 +12,5 @@ class Room():
         self.items = items
 
     def __str__(self):
-        return (f'\n{self.name}:\n\n{self.description}\nItems: {self.items}')
+        return (f'\n{self.name}:\n{self.description}\n\nItems in this room: {self.items}')
 

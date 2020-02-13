@@ -59,13 +59,14 @@ while True:
     if player.current_room.name == 'Treasure Chamber':
         print('\n CONGRATS! YOU WIN!', player.name)
     #print('\n', player.name, '!')
-    cmd = input('->').lower()
+    cmd = input('--> ').lower()
     if cmd in ['n', 's', 'e', 'w']:
         player.travel(cmd)
-    elif cmd == 'd':
-        print()
+    # elif cmd == 'd':
+    #     print()
     elif cmd == 'a':
-        print()
+        player.add_item(cmd)
+        print(f'-- You picked up {player.current_room.items}')
     elif cmd == 'q':
         print('Goodbye!')
         exit()
