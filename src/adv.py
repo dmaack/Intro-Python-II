@@ -40,69 +40,31 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 
-player_name = input('\nHi! Welcome to the game. To get started please enter your name: ') 
-player = Player(player_name, room['outside'])
 
+player = Player(input('\n-> Hi! Welcome to the game. To get started please enter your name: '), room['outside'])
+print(f'\nHello, {player.name}!')
 #direction = ''
 # Write a loop that:
-
+print('\n To move into a room your options are: [n] North [s] South [e] East [w] West or [q] Quit')
+print(player.current_room)
 
 while True:
-
-    
-
-    #print('\n', player.name, '!')
-    print('\n You are in:', player.current_room.name)
-    print(' Description: ', player.current_room.description)
-    #print('\nHello', player.name, '! You are currently in the:', player.current_room)
     if player.current_room.name == 'Treasure Chamber':
-        print('\nYOU WIN!', player.name)
-    direction = input(f'\n To move into a room, tell me your next move. \n Your options are [n] North [s] South [e] East [w] West or [q] Quit: ')
-    # for i in direction:
-    #     if i not in ['n', 's', 'e', 'w', 'q']:
-    #         print('Please enter a valid direction: n, s, e, w, or q')
-    #         continue
-    #     else:
-    #         print('You have now moved to: ', player.current_room.name)
-
-    if direction != None:
-        if direction == 'q':
-            print('\nThanks for playing!\n')
-            break
-        elif direction == 'n':
-            if player.current_room.n_to != None:
-                player.current_room = player.current_room.n_to
-                continue
-            else:
-                print('\n Sorry, cant go that way. Try Again')
-                continue
-        elif direction == 's':
-            if player.current_room.s_to != None:
-                player.current_room = player.current_room.s_to
-                continue
-            else:
-                print('\n Sorry, cant go that way. Try Again')
-                continue
-        # player.current_room = player.current_room.s_to
-        elif direction == 'e':
-            if player.current_room.e_to != None:
-                player.current_room = player.current_room.e_to
-                continue
-            else:
-                print('\n Sorry, cant go that way. Try Again')
-                continue
-        elif direction == 'w':
-            if player.current_room.w_to != None:
-                player.current_room = player.current_room.w_to
-                continue
-            else:
-                print('\n Sorry, cant go that way. Try Again')
-                continue
-    
+        print('\n CONGRATS! YOU WIN!', player.name)
+    #print('\n', player.name, '!')
+    cmd = input('->').lower()
+    if cmd in ['n', 's', 'e', 'w']:
+        player.travel(cmd)
+    elif cmd == 'q':
+        print('Goodbye!')
+        exit()
     else:
-        print('Invalid input')
+        print('Invalid Input, try again')
+        print('\nTo move into a room your options are: [n] North [s] South [e] East [w] West or [q] Quit')
 
-    #break
+
+    
+
     
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
