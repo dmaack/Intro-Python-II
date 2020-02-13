@@ -1,8 +1,15 @@
 from room import Room
 from player import Player
+from item import Item
+
+# Declare all the items
+flashlight = Item('Flashlight', 'May it be a light to you in dark places')
+compass = Item('Compass', 'May this point you in the right directions')
+sword = Item('Sword', 'May this help in your defense')
+
+
 
 # Declare all the rooms
-
 room = {
     'outside':  Room("Outside Cave Entrance",
                      "North of you, the cave mount beckons"),
@@ -33,6 +40,11 @@ room['overlook'].s_to = room['foyer']
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
+
+# Link items to rooms
+room['outside'].items = [flashlight]
+room['foyer'].items = [compass]
+room['narrow'].items = [sword]
 
 #
 # Main

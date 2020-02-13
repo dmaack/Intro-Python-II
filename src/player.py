@@ -7,6 +7,7 @@ class Player():
         self.current_room = starting_room
 
     def travel(self, direction):
+        #Grab the n/s/e/w attribute from the room
         next_room = getattr(self.current_room, f'{direction}_to')
 
         if next_room is not None:
