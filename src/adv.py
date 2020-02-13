@@ -12,21 +12,21 @@ sword = Item('Sword', 'May this help in your defense')
 # Declare all the rooms
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+                     "North of you, the cave mount beckons", flashlight),
 
     'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
-passages run north and east."""),
+passages run north and east.""", compass),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm."""),
+the distance, but there is no way across the chasm.""", None),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
-to north. The smell of gold permeates the air."""),
+to north. The smell of gold permeates the air.""", sword),
 
     'treasure': Room("Treasure Chamber", """You've found the long-lost treasure
 chamber! Sadly, it has already been completely emptied by
-earlier adventurers. The only exit is to the south."""),
+earlier adventurers. The only exit is to the south.""", None),
 }
 
 
@@ -41,11 +41,6 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
-# Link items to rooms
-room['outside'].items = [flashlight]
-room['foyer'].items = [compass]
-room['narrow'].items = [sword]
-
 #
 # Main
 #
@@ -57,7 +52,7 @@ player = Player(input('\n-> Hi! Welcome to the game. To get started please enter
 print(f'\nHello, {player.name}!')
 #direction = ''
 # Write a loop that:
-print('\n To move into a room your options are: [n] North [s] South [e] East [w] West or [q] Quit')
+print('\n To move into a room your options are: [n] North [s] South [e] East [w] West [d] Drop Item [a] Add Item to Inventory or [q] Quit')
 print(player.current_room)
 
 while True:
@@ -67,6 +62,10 @@ while True:
     cmd = input('->').lower()
     if cmd in ['n', 's', 'e', 'w']:
         player.travel(cmd)
+    elif cmd == 'd':
+        print()
+    elif cmd == 'a':
+        print()
     elif cmd == 'q':
         print('Goodbye!')
         exit()
