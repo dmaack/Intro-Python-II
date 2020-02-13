@@ -40,24 +40,42 @@ room['treasure'].s_to = room['narrow']
 
 # Make a new player object that is currently in the 'outside' room.
 
-player = input('\nHi! Welcome to the game. To get started please enter your name: ') ## add an input field??
-#print(new_player)
+player_name = input('\nHi! Welcome to the game. To get started please enter your name: ') 
+player = Player(player_name, room['outside'])
+
+#direction = ''
 # Write a loop that:
-#player_input = ''
+
 
 while True:
-    print('\nHello', player, '! You are currently in the:', room['outside'])
-    direction = input('  To move into another room, tell me your next move. Your options are [n] North [s] South [e] East [w] West or [q] Quit: ')
-    for i in direction:
-        if i == ['n', 's', 'e', 'w', 'q']:
-            print('Please enter a valid direction: n, s, e, w, or q')
-            continue
+
+
+    print('\n', player.name, '!')
+    print(' You are in:', player.current_room.name)
+    #print('\nHello', player.name, '! You are currently in the:', player.current_room)
+    
+    direction = input(f'\nTo move into a room, tell me your next move. Your options are [n] North [s] South [e] East [w] West or [q] Quit: ')
+    # for i in direction:
+    #     if i not in ['n', 's', 'e', 'w', 'q']:
+    #         print('Please enter a valid direction: n, s, e, w, or q')
+    #         continue
+    #     else:
+    #         print('You have now moved to: ', player.current_room.name)
 
     if direction == 'q':
         break
     elif direction == 'n':
-        print('north is working')
-    break
+        player.current_room = player.current_room.n_to
+    elif direction == 's':
+        player.current_room = player.current_room.s_to
+    elif direction == 'e':
+        player.current_room = player.current_room.e_to
+    elif direction == 'w':
+        player.current_room = player.current_room.w_to
+    else:
+        print('Invalid input')
+
+    #break
     
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
