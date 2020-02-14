@@ -2,11 +2,10 @@
 # currently.
 
 class Player():
-    def __init__(self, name, starting_room):
+    def __init__(self, name, current_room):
         self.name = name 
-        self.current_room = starting_room
-        # self.inventory = []
-        self.items = []
+        self.current_room = current_room
+        self.inventory = []
 
     def travel(self, direction):
         #Grab the n/s/e/w attribute from the room
@@ -20,6 +19,19 @@ class Player():
         else:
             print('You cannot go that direction')
 
-    def add_item(self, item):
-        self.items.append(item)
+    def take_item(self, item):
+        if len(self.current_room.items) >= 1:
+            for i in self.current_room.items:
+                if i.name.lower() == item:
+                    self.inventory.append(i)
+                    self.current_room.items.remove(i)
+                    print(f'You picked up an {i.name} and added it to your inventory')
+                    
+    def drop_item(self, item):
+        if len(self.inventory) >= 1:
+            for i in self.inventory:
+                if i.name.lower() == item:
+                    self.inventory.remove(i)
+                    self.current_room.items.append(i) 
+                    print(f'You have dropped {i.name} in {self.current_room.name}')        
 
