@@ -26,7 +26,7 @@ class Player():
                 self.inventory.append(i)
                 self.current_room.items.remove(i)
                 found = True
-                print(f'You picked up an {i.name} and added it to your inventory')
+                i.on_take()
         if not found:
             print(f'This {item} is not in this room')
                     
@@ -37,7 +37,7 @@ class Player():
                 self.inventory.remove(i)
                 self.current_room.items.append(i) 
                 found = True
-                print(f'You have dropped {i.name} in {self.current_room.name}') 
+                i.on_drop() 
         if not found:
             print(f'The {item} was not found in your inventory')        
 
