@@ -20,18 +20,24 @@ class Player():
             print('You cannot go that direction')
 
     def take_item(self, item):
-        if len(self.current_room.items) >= 1:
-            for i in self.current_room.items:
-                if i.name.lower() == item:
-                    self.inventory.append(i)
-                    self.current_room.items.remove(i)
-                    print(f'You picked up an {i.name} and added it to your inventory')
+        found = False
+        for i in self.current_room.items:
+            if i.name.lower() == item:
+                self.inventory.append(i)
+                self.current_room.items.remove(i)
+                found = True
+                print(f'You picked up an {i.name} and added it to your inventory')
+        if not found:
+            print(f'This {item} is not in this room')
                     
     def drop_item(self, item):
-        if len(self.inventory) >= 1:
-            for i in self.inventory:
-                if i.name.lower() == item:
-                    self.inventory.remove(i)
-                    self.current_room.items.append(i) 
-                    print(f'You have dropped {i.name} in {self.current_room.name}')        
+        found = False
+        for i in self.inventory:
+            if i.name.lower() == item:
+                self.inventory.remove(i)
+                self.current_room.items.append(i) 
+                found = True
+                print(f'You have dropped {i.name} in {self.current_room.name}') 
+        if not found:
+            print(f'The {item} was not found in your inventory')        
 

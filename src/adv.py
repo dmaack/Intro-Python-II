@@ -59,7 +59,7 @@ player = Player(input('\n-> Hi! Welcome to the game. To get started please enter
 print(f'\nHello, {player.name}!')
 #direction = ''
 # Write a loop that:
-print('\n To move into a room your options are: [n] North [s] South [e] East [w] West [drop item] Drop Item [take item] Add Item to Inventory [i] Check Inventory or [q] Quit')
+print('\n To move into a room your options are: [n] North [s] South [e] East [w] West [take item name] Add Item to Inventory [drop item name] Drop Item [i] Check Inventory or [q] Quit')
 print(player.current_room)
 
 while True:
